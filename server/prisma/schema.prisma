@@ -49,6 +49,9 @@ model Farm {
   user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId            String
 
+  // Relation to CropCycle model
+  cropCycles        CropCycle[]
+
   @@map("farms")
 }
 

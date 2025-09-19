@@ -18,13 +18,8 @@ import {
   ApiResponse,
   ApiOkResponse,
 } from '@nestjs/swagger';
-import { GetUser, JwtPayloadWithRefreshToken } from './decorators/get-user.decorator';
+import { GetUser, JwtPayload, JwtPayloadWithRefreshToken } from './decorators/get-user.decorator';
 import { AuthTokensDto } from './dto/auth-tokens.dto';
-import {
-  GetUser,
-  JwtPayload,
-  JwtPayloadWithRefreshToken,
-} from './decorators/get-user.decorator';
 
 @ApiTags('Authentication')
 @Controller('auth')

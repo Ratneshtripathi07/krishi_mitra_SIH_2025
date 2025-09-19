@@ -1,10 +1,11 @@
 import { Module } from '@nestjs/common';
 import { DashboardController } from './dashboard.controller';
 import { DashboardService } from './dashboard.service';
-import { WeatherModule } from '../external-services/weather.module'; // Assuming you have this from a previous step
+import { DatabaseModule } from '../common/database/database.module';
+import { WeatherModule } from '../external-services/weather.module';
 
 @Module({
-  imports: [WeatherModule], // Import any modules with services we need
+  imports: [DatabaseModule, WeatherModule],
   controllers: [DashboardController],
   providers: [DashboardService],
 })

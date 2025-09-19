@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from '../prisma/prisma.service';
+import { PrismaService } from '../common/database/prisma.service';
 import { Prisma, User, Role } from '@prisma/client';
 
 @Injectable()
@@ -34,6 +34,17 @@ export class UsersService {
         id: userId,
       },
       data,
+    });
+  }
+
+  async updateRefreshTokenHash(userId: string, hashedRefreshToken: string | null): Promise<void> {
+    await this.prisma.user.update({
+      where: {
+        id: userId,
+      },
+      data: {
+        hashedRefreshToken,
+      },
     });
   }
 }
