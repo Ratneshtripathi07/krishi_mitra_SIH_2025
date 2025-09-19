@@ -1,0 +1,45 @@
+# ---- Base Stage ----
+  FROM node:18 AS base
+  WORKDIR /usr/src/app
+  
+  # ---- Dependencies Stage ----
+  FROM base AS dependencies
+  # Copy the package files from the server directory
+  COPY server/package*.json ./
+  RUN npm ci --omit=dev
+  
+  # ---- Build Stage ----
+  FROM base AS build
+  # Copy the package files from the server directory
+  COPY server/package*.json ./
+  RUN npm ci
+  # Copy the entire server directory content
+  COPY server/. .
+  RUN npx prisma generate
+  RUN npm run build
+  
+  # ---- Production Stage ----
+  FROM node:18 AS production
+  WORKDIR /usr/src/app
+  
+  ENV NODE_ENV=production
+  ENV PORT=3001
+  EXPOSE ${PORT}
+  
+  RUN apk add --no-cache curl
+  RUN addgroup -S nodejs && adduser -S node -G nodejs
+  
+  # Copy artifacts from the previous stages.
+  # Note: The source paths here are relative to the build stage's WORKDIR.
+  COPY --from=dependencies /usr/src/app/node_modules ./node_modules
+  COPY --from=build /usr/src/app/dist ./dist
+  COPY --from=build /usr/src/app/prisma ./prisma
+  COPY --from=build /usr/src/app/node_modules/.prisma ./node_modules/.prisma
+  
+  RUN chown -R node:nodejs /usr/src/app
+  USER node
+  
+  HEALTHCHECK --interval=30s --timeout=5s --start-period=30s --retries=3 \
+    CMD curl -f http://localhost:${PORT}/api/v1/health || exit 1
+  
+  CMD ["node", "dist/main.js"]

@@ -1,0 +1,516 @@
+t assignable to type 'void | ((user: JwtPayloadWithRefreshToken) => Promise<AuthTokensDto>)'.
+
+80     @HttpCode(HttpStatus.OK)
+        ~~~~~~~~~~~~~~~~~~~~~~~
+
+src/auth/auth.controller.ts:81:25 - error TS1206: Decorators are not valid here.
+
+81     async refreshTokens(@GetUser() user: JwtPayloadWithRefreshToken): Promise<AuthTokensDto> {
+                           ~
+
+src/auth/auth.module.ts:8:29 - error TS2306: File '/CodingOnLinux/KRISHI-MITRA-GEM/krishi-mitra/server/src/auth/strategies/jwt.strategy.ts' is not a module.
+
+8 import { JwtStrategy } from './strategies/jwt.strategy';
+                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+src/auth/dto/auth-tokens.dto.ts:4:6 - error TS1240: Unable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<AuthTokensDto, string> & { name: "accessToken"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+  4     @ApiProperty({
+         ~~~~~~~~~~~~~
+  5         description: 'A short-lived JSON Web Token for authenticating API requests.',
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+... 
+  7             'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwicGhvbmVOdW1iZXIiOiI5ODc2NTQzMjEwIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c',
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  8     })
+    ~~~~~~
+
+src/auth/dto/auth-tokens.dto.ts:11:6 - error TS1240: Unable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<AuthTokensDto, string> & { name: "refreshToken"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+ 11     @ApiProperty({
+         ~~~~~~~~~~~~~
+ 12         description:
+    ~~~~~~~~~~~~~~~~~~~~
+... 
+ 15             'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwicGhvbmVOdW1iZXIiOiI5ODc2NTQzMjEwIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c',
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 16     })
+    ~~~~~~
+
+src/auth/dto/login-request.dto.ts:7:6 - error TS1240: Unable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<LoginRequestDto, string> & { name: "otp"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+7     @ApiProperty({ example: '123456', description: '6-digit OTP' })
+       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+src/auth/dto/login-request.dto.ts:8:6 - error TS1240: Unable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<LoginRequestDto, string> & { name: "otp"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+8     @Transform(({ value }) => value?.trim())
+       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+src/auth/dto/login-request.dto.ts:9:6 - error TS1240: Unable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<LoginRequestDto, string> & { name: "otp"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+9     @IsString()
+       ~~~~~~~~~~
+
+src/auth/dto/login-request.dto.ts:10:6 - error TS1240: Unable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<LoginRequestDto, string> & { name: "otp"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+10     @IsNotEmpty()
+        ~~~~~~~~~~~~
+
+src/auth/dto/login-request.dto.ts:11:6 - error TS1240: Unable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<LoginRequestDto, string> & { name: "otp"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+11     @Length(6, 6, { message: 'OTP must be exactly 6 digits' })
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+src/auth/dto/login-request.dto.ts:12:6 - error TS1240: Unable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<LoginRequestDto, string> & { name: "otp"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+12     @Matches(/^\d{6}$/, { message: 'OTP must contain only digits' })
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+src/auth/dto/otp-request.dto.ts:6:6 - error TS1240: Unable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<OtpRequestDto, string> & { name: "phoneNumber"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+6     @ApiProperty({
+       ~~~~~~~~~~~~~
+7         example: '9876543210',
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+8         description: '10-digit Indian phone number',
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+9     })
+  ~~~~~~
+
+src/auth/dto/otp-request.dto.ts:10:6 - error TS1240: Unable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<OtpRequestDto, string> & { name: "phoneNumber"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+10     @Transform(({ value }) => value?.trim())
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+src/auth/dto/otp-request.dto.ts:11:6 - error TS1240: Unable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<OtpRequestDto, string> & { name: "phoneNumber"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+11     @IsString()
+        ~~~~~~~~~~
+
+src/auth/dto/otp-request.dto.ts:12:6 - error TS1240: Unable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<OtpRequestDto, string> & { name: "phoneNumber"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+12     @IsNotEmpty()
+        ~~~~~~~~~~~~
+
+src/auth/dto/otp-request.dto.ts:13:6 - error TS1240: Unable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<OtpRequestDto, string> & { name: "phoneNumber"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+13     @Length(10, 10, { message: 'Phone number must be exactly 10 digits' })
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+src/auth/dto/otp-request.dto.ts:14:6 - error TS1240: Unable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<OtpRequestDto, string> & { name: "phoneNumber"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+14     @Matches(/^\d{10}$/, { message: 'Phone number must contain only digits' })
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+src/farms/dto/create-farm.dto.ts:8:6 - error TS1240: Unable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateFarmDto, string> & { name: "farmName"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+8     @ApiProperty({ example: 'Home Field' })
+       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+src/farms/dto/create-farm.dto.ts:9:6 - error TS1240: Unable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateFarmDto, string> & { name: "farmName"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+9     @IsString()
+       ~~~~~~~~~~
+
+src/farms/dto/create-farm.dto.ts:10:6 - error TS1240: Unable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateFarmDto, string> & { name: "farmName"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+10     @IsNotEmpty()
+        ~~~~~~~~~~~~
+
+src/farms/dto/create-farm.dto.ts:13:6 - error TS1240: Unable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateFarmDto, number> & { name: "locationLat"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+13     @ApiProperty({ example: 28.6139 })
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+src/farms/dto/create-farm.dto.ts:14:6 - error TS1240: Unable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateFarmDto, number> & { name: "locationLat"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+14     @IsNumber()
+        ~~~~~~~~~~
+
+src/farms/dto/create-farm.dto.ts:17:6 - error TS1240: Unable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateFarmDto, number> & { name: "locationLon"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+17     @ApiProperty({ example: 77.2090 })
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+src/farms/dto/create-farm.dto.ts:18:6 - error TS1240: Unable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateFarmDto, number> & { name: "locationLon"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+18     @IsNumber()
+        ~~~~~~~~~~
+
+src/farms/dto/create-farm.dto.ts:21:6 - error TS1240: Unable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateFarmDto, string> & { name: "soilType"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+21     @ApiProperty({ example: 'loamy', enum: soilTypes })
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+src/farms/dto/create-farm.dto.ts:22:6 - error TS1240: Unable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateFarmDto, string> & { name: "soilType"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+22     @IsString()
+        ~~~~~~~~~~
+
+src/farms/dto/create-farm.dto.ts:23:6 - error TS1240: Unable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateFarmDto, string> & { name: "soilType"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+23     @IsIn(soilTypes)
+        ~~~~~~~~~~~~~~~
+
+src/farms/dto/create-farm.dto.ts:26:6 - error TS1240: Unable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateFarmDto, string> & { name: "irrigationSource"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+26     @ApiProperty({ example: 'canal', enum: irrigationSources })
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+src/farms/dto/create-farm.dto.ts:27:6 - error TS1240: Unable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateFarmDto, string> & { name: "irrigationSource"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+27     @IsString()
+        ~~~~~~~~~~
+
+src/farms/dto/create-farm.dto.ts:28:6 - error TS1240: Unable to resolve signature of property decorator when called as an expression.
+  Argument of type 'ClassFieldDecoratorContext<CreateFarmDto, string> & { name: "irrigationSource"; private: false; static: false; }' is not assignable to parameter of type 'string | symbol'.
+
+28     @IsIn(irrigationSources)
+        ~~~~~~~~~~~~~~~~~~~~~~~
+
+src/farms/farms.controller.ts:26:5 - error TS1241: Unable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+26     @Post()
+       ~~~~~~~
+
+  node_modules/typescript/lib/lib.decorators.legacy.d.ts:21:82
+    21 declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+                                                                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    An argument for 'descriptor' was not provided.
+
+src/farms/farms.controller.ts:26:6 - error TS1270: Decorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((userId: string, createFarmDto: CreateFarmDto) => Promise<any>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((userId: string, createFarmDto: CreateFarmDto) => Promise<any>)'.
+
+26     @Post()
+        ~~~~~~
+
+src/farms/farms.controller.ts:27:5 - error TS1241: Unable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+27     @ApiOperation({ summary: 'Create a new farm for the logged-in user' })
+       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  node_modules/typescript/lib/lib.decorators.legacy.d.ts:21:82
+    21 declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+                                                                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    An argument for 'descriptor' was not provided.
+
+src/farms/farms.controller.ts:27:6 - error TS1270: Decorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((userId: string, createFarmDto: CreateFarmDto) => Promise<any>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((userId: string, createFarmDto: CreateFarmDto) => Promise<any>)'.
+
+27     @ApiOperation({ summary: 'Create a new farm for the logged-in user' })
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+src/farms/farms.controller.ts:28:12 - error TS1206: Decorators are not valid here.
+
+28     create(@GetUser('sub') userId: string, @Body() createFarmDto: CreateFarmDto) {
+              ~
+
+src/farms/farms.controller.ts:28:44 - error TS1206: Decorators are not valid here.
+
+28     create(@GetUser('sub') userId: string, @Body() createFarmDto: CreateFarmDto) {
+                                              ~
+
+src/farms/farms.controller.ts:32:5 - error TS1241: Unable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+32     @Get()
+       ~~~~~~
+
+  node_modules/typescript/lib/lib.decorators.legacy.d.ts:21:82
+    21 declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+                                                                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    An argument for 'descriptor' was not provided.
+
+src/farms/farms.controller.ts:32:6 - error TS1270: Decorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((userId: string) => Promise<any>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((userId: string) => Promise<any>)'.
+
+32     @Get()
+        ~~~~~
+
+src/farms/farms.controller.ts:33:5 - error TS1241: Unable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+33     @ApiOperation({ summary: "Get all of the logged-in user's farms" })
+       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  node_modules/typescript/lib/lib.decorators.legacy.d.ts:21:82
+    21 declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+                                                                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    An argument for 'descriptor' was not provided.
+
+src/farms/farms.controller.ts:33:6 - error TS1270: Decorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((userId: string) => Promise<any>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((userId: string) => Promise<any>)'.
+
+33     @ApiOperation({ summary: "Get all of the logged-in user's farms" })
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+src/farms/farms.controller.ts:34:13 - error TS1206: Decorators are not valid here.
+
+34     findAll(@GetUser('sub') userId: string) {
+               ~
+
+src/farms/farms.controller.ts:38:5 - error TS1241: Unable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+38     @Get(':id')
+       ~~~~~~~~~~~
+
+  node_modules/typescript/lib/lib.decorators.legacy.d.ts:21:82
+    21 declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+                                                                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    An argument for 'descriptor' was not provided.
+
+src/farms/farms.controller.ts:38:6 - error TS1270: Decorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((userId: string, id: string) => Promise<any>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((userId: string, id: string) => Promise<any>)'.
+
+38     @Get(':id')
+        ~~~~~~~~~~
+
+src/farms/farms.controller.ts:39:5 - error TS1241: Unable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+39     @ApiOperation({ summary: 'Get a specific farm by its ID' })
+       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  node_modules/typescript/lib/lib.decorators.legacy.d.ts:21:82
+    21 declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+                                                                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    An argument for 'descriptor' was not provided.
+
+src/farms/farms.controller.ts:39:6 - error TS1270: Decorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((userId: string, id: string) => Promise<any>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((userId: string, id: string) => Promise<any>)'.
+
+39     @ApiOperation({ summary: 'Get a specific farm by its ID' })
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+src/farms/farms.controller.ts:41:9 - error TS1206: Decorators are not valid here.
+
+41         @GetUser('sub') userId: string,
+           ~
+
+src/farms/farms.controller.ts:42:9 - error TS1206: Decorators are not valid here.
+
+42         @Param('id', ParseUUIDPipe) id: string,
+           ~
+
+src/farms/farms.controller.ts:47:5 - error TS1241: Unable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+47     @Patch(':id')
+       ~~~~~~~~~~~~~
+
+  node_modules/typescript/lib/lib.decorators.legacy.d.ts:21:82
+    21 declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+                                                                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    An argument for 'descriptor' was not provided.
+
+src/farms/farms.controller.ts:47:6 - error TS1270: Decorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((userId: string, id: string, updateFarmDto: UpdateFarmDto) => Promise<any>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((userId: string, id: string, updateFarmDto: UpdateFarmDto) => Promise<any>)'.
+
+47     @Patch(':id')
+        ~~~~~~~~~~~~
+
+src/farms/farms.controller.ts:48:5 - error TS1241: Unable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+48     @ApiOperation({ summary: 'Update a specific farm' })
+       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  node_modules/typescript/lib/lib.decorators.legacy.d.ts:21:82
+    21 declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+                                                                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    An argument for 'descriptor' was not provided.
+
+src/farms/farms.controller.ts:48:6 - error TS1270: Decorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((userId: string, id: string, updateFarmDto: UpdateFarmDto) => Promise<any>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((userId: string, id: string, updateFarmDto: UpdateFarmDto) => Promise<any>)'.
+
+48     @ApiOperation({ summary: 'Update a specific farm' })
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+src/farms/farms.controller.ts:50:9 - error TS1206: Decorators are not valid here.
+
+50         @GetUser('sub') userId: string,
+           ~
+
+src/farms/farms.controller.ts:51:9 - error TS1206: Decorators are not valid here.
+
+51         @Param('id', ParseUUIDPipe) id: string,
+           ~
+
+src/farms/farms.controller.ts:52:9 - error TS1206: Decorators are not valid here.
+
+52         @Body() updateFarmDto: UpdateFarmDto,
+           ~
+
+src/farms/farms.controller.ts:57:5 - error TS1241: Unable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+57     @Delete(':id')
+       ~~~~~~~~~~~~~~
+
+  node_modules/typescript/lib/lib.decorators.legacy.d.ts:21:82
+    21 declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+                                                                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    An argument for 'descriptor' was not provided.
+
+src/farms/farms.controller.ts:57:6 - error TS1270: Decorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((userId: string, id: string) => Promise<any>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((userId: string, id: string) => Promise<any>)'.
+
+57     @Delete(':id')
+        ~~~~~~~~~~~~~
+
+src/farms/farms.controller.ts:58:5 - error TS1241: Unable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+58     @ApiOperation({ summary: 'Delete a specific farm' })
+       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  node_modules/typescript/lib/lib.decorators.legacy.d.ts:21:82
+    21 declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+                                                                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    An argument for 'descriptor' was not provided.
+
+src/farms/farms.controller.ts:58:6 - error TS1270: Decorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((userId: string, id: string) => Promise<any>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((userId: string, id: string) => Promise<any>)'.
+
+58     @ApiOperation({ summary: 'Delete a specific farm' })
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+src/farms/farms.controller.ts:60:9 - error TS1206: Decorators are not valid here.
+
+60         @GetUser('sub') userId: string,
+           ~
+
+src/farms/farms.controller.ts:61:9 - error TS1206: Decorators are not valid here.
+
+61         @Param('id', ParseUUIDPipe) id: string,
+           ~
+
+src/farms/farms.service.ts:2:31 - error TS2307: Cannot find module '../prisma/prisma.service' or its corresponding type declarations.
+
+2 import { PrismaService } from '../prisma/prisma.service';
+                                ~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+src/users/users.controller.ts:6:31 - error TS2306: File '/CodingOnLinux/KRISHI-MITRA-GEM/krishi-mitra/server/src/users/dto/update-user.dto.ts' is not a module.
+
+6 import { UpdateUserDto } from './dto/update-user.dto'; // We'll create this DTO
+                                ~~~~~~~~~~~~~~~~~~~~~~~
+
+src/users/users.controller.ts:15:5 - error TS1241: Unable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+15     @Get('me')
+       ~~~~~~~~~~
+
+  node_modules/typescript/lib/lib.decorators.legacy.d.ts:21:82
+    21 declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+                                                                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    An argument for 'descriptor' was not provided.
+
+src/users/users.controller.ts:15:6 - error TS1270: Decorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((userId: string) => Promise<{ name: string; id: string; phoneNumber: string; languagePreference: string; hashedRefreshToken: string; createdAt: Date; updatedAt: Date; }>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((userId: string) => Promise<{ name: string; id: string; phoneNumber: string; languagePreference: string; hashedRefreshToken: string; createdAt: Date; updatedAt: Date; }>)'.
+
+15     @Get('me')
+        ~~~~~~~~~
+
+src/users/users.controller.ts:16:5 - error TS1241: Unable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+16     @ApiOperation({ summary: 'Get the profile of the currently logged-in user' })
+       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  node_modules/typescript/lib/lib.decorators.legacy.d.ts:21:82
+    21 declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+                                                                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    An argument for 'descriptor' was not provided.
+
+src/users/users.controller.ts:16:6 - error TS1270: Decorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((userId: string) => Promise<{ name: string; id: string; phoneNumber: string; languagePreference: string; hashedRefreshToken: string; createdAt: Date; updatedAt: Date; }>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((userId: string) => Promise<{ name: string; id: string; phoneNumber: string; languagePreference: string; hashedRefreshToken: string; createdAt: Date; updatedAt: Date; }>)'.
+
+16     @ApiOperation({ summary: 'Get the profile of the currently logged-in user' })
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+src/users/users.controller.ts:17:16 - error TS1206: Decorators are not valid here.
+
+17     getProfile(@GetUser('sub') userId: string) {
+                  ~
+
+src/users/users.controller.ts:21:5 - error TS1241: Unable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+21     @Patch('me')
+       ~~~~~~~~~~~~
+
+  node_modules/typescript/lib/lib.decorators.legacy.d.ts:21:82
+    21 declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+                                                                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    An argument for 'descriptor' was not provided.
+
+src/users/users.controller.ts:21:6 - error TS1270: Decorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((userId: string, updateUserDto: UpdateUserDto) => Promise<{ name: string; id: string; phoneNumber: string; languagePreference: string; hashedRefreshToken: string; createdAt: Date; updatedAt: Date; }>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((userId: string, updateUserDto: UpdateUserDto) => Promise<{ name: string; id: string; phoneNumber: string; languagePreference: string; hashedRefreshToken: string; createdAt: Date; updatedAt: Date; }>)'.
+
+21     @Patch('me')
+        ~~~~~~~~~~~
+
+src/users/users.controller.ts:22:5 - error TS1241: Unable to resolve signature of method decorator when called as an expression.
+  The runtime will invoke the decorator with 2 arguments, but the decorator expects 3.
+
+22     @ApiOperation({ summary: 'Update the profile of the currently logged-in user' })
+       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  node_modules/typescript/lib/lib.decorators.legacy.d.ts:21:82
+    21 declare type MethodDecorator = <T>(target: Object, propertyKey: string | symbol, descriptor: TypedPropertyDescriptor<T>) => TypedPropertyDescriptor<T> | void;
+                                                                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    An argument for 'descriptor' was not provided.
+
+src/users/users.controller.ts:22:6 - error TS1270: Decorator function return type 'void | TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((userId: string, updateUserDto: UpdateUserDto) => Promise<{ name: string; id: string; phoneNumber: string; languagePreference: string; hashedRefreshToken: string; createdAt: Date; updatedAt: Date; }>)'.
+  Type 'TypedPropertyDescriptor<unknown>' is not assignable to type 'void | ((userId: string, updateUserDto: UpdateUserDto) => Promise<{ name: string; id: string; phoneNumber: string; languagePreference: string; hashedRefreshToken: string; createdAt: Date; updatedAt: Date; }>)'.
+
+22     @ApiOperation({ summary: 'Update the profile of the currently logged-in user' })
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+src/users/users.controller.ts:24:9 - error TS1206: Decorators are not valid here.
+
+24         @GetUser('sub') userId: string,
+           ~
+
+src/users/users.controller.ts:25:9 - error TS1206: Decorators are not valid here.
+
+25         @Body() updateUserDto: UpdateUserDto,
+           ~
+
+src/users/users.service.ts:2:31 - error TS2307: Cannot find module '../prisma/prisma.service' or its corresponding type declarations.
+
+2 import { PrismaService } from '../prisma/prisma.service';
+                                ~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+[10:18:15 AM] Found 101 errors. Watching for file changes.

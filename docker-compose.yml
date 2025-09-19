@@ -1,0 +1,89 @@
+#development
+version: '3.8'
+
+services:
+  # PostgreSQL Database Service
+  db:
+    image: postgres:15-alpine
+    container_name: krishi_mitra_db
+    restart: always
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: krishi_mitra
+    ports:
+      # Expose the database port to your local machine
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  # Redis Cache Service
+  redis:
+    image: redis:7-alpine
+    container_name: krishi_mitra_redis
+    restart: always
+    ports:
+      # Expose the redis port to your local machine
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+volumes:
+  postgres_data:
+  redis_data:
+# production
+# version: '3.8'
+
+# services:
+#   # Our NestJS Backend Service
+#   backend:
+#     build:
+#       context: .
+#       dockerfile: Dockerfile.backend
+#     container_name: krishi_mitra_backend
+#     # Use the .env file in the server directory for environment variables
+#     env_file:
+#       - ./server/.env
+#     ports:
+#       # Map port 3001 on the host to port 3001 in the container
+#       - "3001:3001"
+#     volumes:
+#       # Mount the server source code for live-reloading during development
+#       - ./server:/usr/src/app
+#       # Do not mount node_modules; use the ones inside the container
+#       - /usr/src/app/node_modules
+#     # Ensure the database and cache are started before the backend
+#     depends_on:
+#       - db
+#       - redis
+#     # The command to run the app in development (watch) mode
+#     command: npm run start:dev
+
+#   # PostgreSQL Database Service
+#   db:
+#     image: postgres:15-alpine
+#     container_name: krishi_mitra_db
+#     environment:
+#       POSTGRES_USER: user
+#       POSTGRES_PASSWORD: password
+#       POSTGRES_DB: krishi_mitra
+#     ports:
+#       - "5432:5432"
+#     volumes:
+#       # Persist database data on the host machine
+#       - postgres_data:/var/lib/postgresql/data
+
+#   # Redis Cache Service
+#   redis:
+#     image: redis:7-alpine
+#     container_name: krishi_mitra_redis
+#     ports:
+#       - "6379:6379"
+#     volumes:
+#       # Persist cache data on the host machine
+#       - redis_data:/data
+
+# # Define the named volumes for data persistence
+# volumes:
+#   postgres_data:
+#   redis_data:

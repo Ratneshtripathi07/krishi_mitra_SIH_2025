@@ -1,0 +1,79 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          Int      @id @default(autoincrement())
+  email       String   @unique
+  password    String
+  name        String
+  farmDetails Json?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  cropCycles CropCycle[]
+  advisories Advisory[]
+
+  @@map("users")
+}
+
+model CropCycle {
+  id                   Int      @id @default(autoincrement())
+  userId               Int
+  cropType             String
+  variety              String?
+  plantingDate         DateTime
+  expectedHarvestDate  DateTime
+  actualHarvestDate    DateTime?
+  fieldSize            Float?
+  location             Json?
+  status               String   @default("active") // active, completed, cancelled
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+
+  user       User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  activities Activity[]
+
+  @@map("crop_cycles")
+}
+
+model Activity {
+  id            Int       @id @default(autoincrement())
+  cropCycleId   Int
+  type          String    // planting, watering, fertilizing, harvesting, etc.
+  description   String
+  scheduledDate DateTime
+  completedDate DateTime?
+  notes         String?
+  cost          Float?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  cropCycle CropCycle @relation(fields: [cropCycleId], references: [id], onDelete: Cascade)
+
+  @@map("activities")
+}
+
+model Advisory {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  title     String
+  content   String
+  category  String   // weather, pest, disease, fertilizer, etc.
+  priority  String   // low, medium, high
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("advisories")
+}

@@ -1,0 +1,43 @@
+# ---- Base Stage ----
+# Use a specific Node.js version for consistency.
+FROM node:18-alpine AS base
+WORKDIR /usr/src/app/client
+
+# ---- Dependencies Stage ----
+# Install all dependencies needed for building the application.
+FROM base AS deps
+COPY client/package*.json ./
+RUN npm ci
+
+# ---- Build Stage ----
+# Build the Next.js application for production.
+FROM base AS builder
+COPY --from=deps /usr/src/app/client/node_modules ./node_modules
+COPY client/ ./
+# The build-time public environment variable for the API URL.
+# This will be replaced by a runtime variable in a real deployment.
+ARG NEXT_PUBLIC_API_BASE_URL
+ENV NEXT_PUBLIC_API_BASE_URL=${NEXT_PUBLIC_API_BASE_URL}
+RUN npm run build
+
+# ---- Production/Runner Stage ----
+# This is the final, optimized image that will be deployed.
+FROM node:18-alpine AS runner
+WORKDIR /usr/src/app/client
+
+ENV NODE_ENV=production
+ENV PORT=3000
+EXPOSE ${PORT}
+
+# Create a non-root user for security.
+RUN addgroup -S nextjs && adduser -S nextjs -G nextjs
+USER nextjs
+
+# Copy only the necessary production artifacts from the builder stage.
+COPY --from=builder --chown=nextjs:nextjs /usr/src/app/client/public ./public
+COPY --from=builder --chown=nextjs:nextjs /usr/src/app/client/.next ./.next
+COPY --from=builder --chown=nextjs:nextjs /usr/src/app/client/node_modules ./node_modules
+COPY --from=builder --chown=nextjs:nextjs /usr/src/app/client/package.json ./package.json
+
+# The command to start the Next.js production server.
+CMD ["npm", "start"] 

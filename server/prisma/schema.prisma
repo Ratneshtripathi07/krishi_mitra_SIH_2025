@@ -1,0 +1,53 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.lyd/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// NEW: Role enum to distinguish between user types
+enum Role {
+  FARMER
+  ADMIN
+}
+
+model User {
+  id                  String    @id @default(uuid())
+  phoneNumber         String    @unique
+  name                String?
+  languagePreference  String    @default("hi")
+  hashedRefreshToken  String?
+  role                Role      @default(FARMER) // NEW: role field for users
+
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+
+  // NEW: Relation defining that a user can have many farms
+  farms               Farm[]
+
+  @@map("users")
+}
+
+// NEW: Model for a user's farm
+model Farm {
+  id                String   @id @default(uuid())
+  farmName          String
+  locationLat       Float
+  locationLon       Float
+  soilType          String   // e.g., 'sandy', 'clayey', 'loamy'
+  irrigationSource  String   // e.g., 'rain-fed', 'canal', 'borewell'
+
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  // Relation to the User model
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId            String
+
+  @@map("farms")
+}
