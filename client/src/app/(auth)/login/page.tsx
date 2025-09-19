@@ -51,8 +51,6 @@ export default function LoginPage() {
     const handleRequestOtp = (e: React.FormEvent) => {
         e.preventDefault();
         if (phoneNumber.length === 10) {
-            // In a real app, this would call an API endpoint.
-            // For the MVP, we just reveal the OTP input field.
             console.log(`OTP requested for ${phoneNumber}. For MVP, use '123456'`);
             setOtpSent(true);
         } else {
@@ -62,7 +60,9 @@ export default function LoginPage() {
 
     const handleLogin = (e: React.FormEvent) => {
         e.preventDefault();
-        login(phoneNumber, otp);
+        // Assuming the login function in AuthContext is updated to handle the role
+        // For now, we'll just pass a default or null role.
+        login(phoneNumber, otp, 'FARMER');
     };
 
     return (
@@ -86,7 +86,8 @@ export default function LoginPage() {
             ) : (
                 <form onSubmit={handleLogin} style={styles.form}>
                     <h2>Enter OTP</h2>
-                    <p>An OTP was "sent" to {phoneNumber}</p>
+                    {/* FIX: Replaced "sent" with &quot;sent&quot; */}
+                    <p>An OTP was &quot;sent&quot; to {phoneNumber}</p>
                     <input
                         type="text"
                         value={otp}

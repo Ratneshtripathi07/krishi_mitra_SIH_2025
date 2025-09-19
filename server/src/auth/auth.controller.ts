@@ -18,6 +18,7 @@ import {
   ApiResponse,
   ApiOkResponse,
 } from '@nestjs/swagger';
+import { GetUser, JwtPayloadWithRefreshToken } from './decorators/get-user.decorator';
 import { AuthTokensDto } from './dto/auth-tokens.dto';
 import {
   GetUser,
@@ -28,7 +29,7 @@ import {
 @ApiTags('Authentication')
 @Controller('auth')
 export class AuthController {
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) { }
 
   @ApiOperation({ summary: 'Request an OTP for a given phone number' })
   @ApiResponse({ status: 200, description: 'OTP request acknowledged.' })

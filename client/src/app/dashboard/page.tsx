@@ -6,7 +6,7 @@ import { StatCard } from '@/components/dashboard/stat-card';
 import { Sun } from 'lucide-react';
 import { AlertsPanel } from '@/components/dashboard/alerts-panel';
 import { useDashboard } from '@/hooks/useDashboard';
-import { SchemesPanel } from '@/components/dashboard/schemes-panel'; // <-- Import
+import { SchemesPanel } from '@/components/dashboard/schemes-panel';
 
 export default function DashboardPage() {
     const { dashboardData, isLoading, isError } = useDashboard();
@@ -16,7 +16,8 @@ export default function DashboardPage() {
 
     return (
         <div className="space-y-6">
-            <h2 className="text-3xl font-bold">Today's Overview</h2>
+            {/* FIX: Replaced Today's with Today&apos;s */}
+            <h2 className="text-3xl font-bold">Today&apos;s Overview</h2>
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
                 <WeatherCard weatherData={dashboardData?.weather} />
                 <MarketPriceCard marketData={dashboardData?.marketPrices} />
@@ -27,7 +28,7 @@ export default function DashboardPage() {
                     icon={<Sun className="h-5 w-5 text-muted-foreground" />}
                 />
                 <AlertsPanel alerts={dashboardData?.alerts} />
-                <SchemesPanel /> {/* <-- Add new panel */}
+                <SchemesPanel />
             </div>
         </div>
     );
