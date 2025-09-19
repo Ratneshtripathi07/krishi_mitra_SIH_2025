@@ -85,3 +85,15 @@ model Activity {
   createdAt     DateTime  @default(now())
   @@map("activities")
 }
+
+// NEW: Model for manageable content like schemes or advisories
+model Content {
+  id          String   @id @default(uuid())
+  title       String
+  description String
+  type        String   // e.g., 'SCHEME', 'ADVISORY'
+  isPublished Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  @@map("content")
+}
