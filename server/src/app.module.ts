@@ -5,32 +5,30 @@ import { PrismaModule } from './prisma/prisma.module';
 import { ConfigModule } from '@nestjs/config';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import { APP_GUARD } from '@nestjs/core';
-import { FarmsModule } from './farms/farms.module'; // <-- Import the new module
 import { FarmsModule } from './farms/farms.module';
-import { DashboardModule } from './dashboard/dashboard.module'; // <-- Import
-
+import { DashboardModule } from './dashboard/dashboard.module';
+import { CropCyclesModule } from './crop-cycles/crop-cycles.module';
+import { WeatherModule } from './external-services/weather.module';
+import { ActivitiesModule } from './activities/activities.module'; // <-- Import
+import { ActivitiesModule } from './activities/activities.module';
+import { AdminModule } from './admin/admin.module'; // <-- Import
 
 @Module({
     imports: [
-        ConfigModule.forRoot({
-            isGlobal: true,
-        }),
-        ThrottlerModule.forRoot({
-            ttl: 60,
-            limit: 10,
-        }),
+        ConfigModule.forRoot({ isGlobal: true }),
+        ThrottlerModule.forRoot({ ttl: 60, limit: 10 }),
+        PrismaModule,
         AuthModule,
         UsersModule,
-        PrismaModule,
-        FarmsModule, // <-- Add it here
+        FarmsModule,
         DashboardModule,
+        CropCyclesModule,
+        ActivitiesModule, // <-- Register
+        WeatherModule,
+          ActivitiesModule,
+    AdminModule, // <-- Register
     ],
     controllers: [],
-    providers: [
-        {
-            provide: APP_GUARD,
-            useClass: ThrottlerGuard,
-        },
-    ],
+    providers: [{ provide: APP_GUARD, useClass: ThrottlerGuard }],
 })
 export class AppModule { }
