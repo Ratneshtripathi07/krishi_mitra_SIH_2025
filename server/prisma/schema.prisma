@@ -51,3 +51,37 @@ model Farm {
 
   @@map("farms")
 }
+
+// NEW: Model for a crop cycle (e.g., "Tomatoes - Summer 2025")
+model CropCycle {
+  id                  String   @id @default(uuid())
+  cropName            String
+  sowingDate          DateTime
+  expectedHarvestDate DateTime?
+  status              String   @default("ACTIVE") // e.g., ACTIVE, COMPLETED, FAILED
+
+  farm                Farm     @relation(fields: [farmId], references: [id], onDelete: Cascade)
+  farmId              String
+
+  // NEW: A crop cycle can have many activities
+  activities          Activity[]
+
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+  @@map("crop_cycles")
+}
+
+// NEW: Model for a single logged activity
+model Activity {
+  id            String   @id @default(uuid())
+  activityType  String   // e.g., 'IRRIGATION', 'FERTILIZER', 'PEST_CONTROL'
+  date          DateTime
+  notes         String?
+  data          Json?    // For specific data, e.g., {"fertilizerName": "Urea"}
+
+  cropCycle     CropCycle @relation(fields: [cropCycleId], references: [id], onDelete: Cascade)
+  cropCycleId   String
+
+  createdAt     DateTime  @default(now())
+  @@map("activities")
+}
