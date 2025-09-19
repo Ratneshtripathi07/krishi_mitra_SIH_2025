@@ -12,6 +12,7 @@ import { WeatherModule } from './external-services/weather.module';
 import { ActivitiesModule } from './activities/activities.module'; // <-- Import
 import { ActivitiesModule } from './activities/activities.module';
 import { AdminModule } from './admin/admin.module'; // <-- Import
+import { ContentModule } from './content/content.module'; // <-- Import
 
 @Module({
     imports: [
@@ -25,8 +26,9 @@ import { AdminModule } from './admin/admin.module'; // <-- Import
         CropCyclesModule,
         ActivitiesModule, // <-- Register
         WeatherModule,
-          ActivitiesModule,
-    AdminModule, // <-- Register
+        ActivitiesModule,
+        AdminModule, // <-- Register
+        ContentModule, 
     ],
     controllers: [],
     providers: [{ provide: APP_GUARD, useClass: ThrottlerGuard }],
