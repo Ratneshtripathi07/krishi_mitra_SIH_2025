@@ -7,7 +7,9 @@ export class AdminService {
 
   // Method to get analytical dashboard data (mocked)
   async getDashboardAnalytics() {
-    const totalUsers = await this.prisma.user.count({ where: { role: 'FARMER' } });
+    const totalUsers = await this.prisma.user.count({
+      where: { role: 'FARMER' },
+    });
     const totalFarms = await this.prisma.farm.count();
 
     return {
@@ -39,8 +41,8 @@ export class AdminService {
           select: {
             id: true,
             farmName: true,
-          }
-        }
+          },
+        },
       },
     });
   }

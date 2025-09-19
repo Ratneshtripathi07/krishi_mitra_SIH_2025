@@ -15,7 +15,7 @@ export class ContentService {
     // Also fetch unpublished content for the admin view
     return this.prisma.content.findMany({ orderBy: { createdAt: 'desc' } });
   }
-  
+
   update(id: string, updateContentDto: UpdateContentDto) {
     return this.prisma.content.update({
       where: { id },

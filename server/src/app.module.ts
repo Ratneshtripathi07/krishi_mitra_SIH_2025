@@ -15,22 +15,22 @@ import { AdminModule } from './admin/admin.module'; // <-- Import
 import { ContentModule } from './content/content.module'; // <-- Import
 
 @Module({
-    imports: [
-        ConfigModule.forRoot({ isGlobal: true }),
-        ThrottlerModule.forRoot({ ttl: 60, limit: 10 }),
-        PrismaModule,
-        AuthModule,
-        UsersModule,
-        FarmsModule,
-        DashboardModule,
-        CropCyclesModule,
-        ActivitiesModule, // <-- Register
-        WeatherModule,
-        ActivitiesModule,
-        AdminModule, // <-- Register
-        ContentModule, 
-    ],
-    controllers: [],
-    providers: [{ provide: APP_GUARD, useClass: ThrottlerGuard }],
+  imports: [
+    ConfigModule.forRoot({ isGlobal: true }),
+    ThrottlerModule.forRoot({ ttl: 60, limit: 10 }),
+    PrismaModule,
+    AuthModule,
+    UsersModule,
+    FarmsModule,
+    DashboardModule,
+    CropCyclesModule,
+    ActivitiesModule, // <-- Register
+    WeatherModule,
+    ActivitiesModule,
+    AdminModule, // <-- Register
+    ContentModule,
+  ],
+  controllers: [],
+  providers: [{ provide: APP_GUARD, useClass: ThrottlerGuard }],
 })
-export class AppModule { }
+export class AppModule {}

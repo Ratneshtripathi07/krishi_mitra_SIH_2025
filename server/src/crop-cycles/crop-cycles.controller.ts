@@ -1,4 +1,12 @@
-import { Controller, Post, Body, UseGuards, Param, ParseUUIDPipe, Get } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  UseGuards,
+  Param,
+  ParseUUIDPipe,
+  Get,
+} from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { ApiBearerAuth, ApiTags, ApiOperation } from '@nestjs/swagger';
 import { GetUser } from '../auth/decorators/get-user.decorator';
@@ -10,26 +18,26 @@ import { CreateCropCycleDto } from './dto/create-crop-cycle.dto';
 @UseGuards(AuthGuard('jwt'))
 @Controller()
 export class CropCyclesController {
-    constructor(private readonly cropCyclesService: CropCyclesService) { }
+  constructor(private readonly cropCyclesService: CropCyclesService) {}
 
-    @Post('farms/:farmId/cycles')
-    @ApiOperation({ summary: 'Create a new crop cycle for a specific farm' })
-    create(
-        @GetUser('sub') userId: string,
-        @Param('farmId', ParseUUIDPipe) farmId: string,
-        @Body() createCropCycleDto: CreateCropCycleDto,
-    ) {
-        return this.cropCyclesService.create(userId, farmId, createCropCycleDto);
-    }
+  @Post('farms/:farmId/cycles')
+  @ApiOperation({ summary: 'Create a new crop cycle for a specific farm' })
+  create(
+    @GetUser('sub') userId: string,
+    @Param('farmId', ParseUUIDPipe) farmId: string,
+    @Body() createCropCycleDto: CreateCropCycleDto,
+  ) {
+    return this.cropCyclesService.create(userId, farmId, createCropCycleDto);
+  }
 
-    @Get('farms/:farmId/cycles')
-    @ApiOperation({ summary: 'Get all crop cycles for a specific farm' })
-    findAll(
-        @GetUser('sub') userId: string,
-        @Param('farmId', ParseUUIDPipe) farmId: string,
-    ) {
-        return this.cropCyclesService.findAllByFarm(userId, farmId);
-    }
+  @Get('farms/:farmId/cycles')
+  @ApiOperation({ summary: 'Get all crop cycles for a specific farm' })
+  findAll(
+    @GetUser('sub') userId: string,
+    @Param('farmId', ParseUUIDPipe) farmId: string,
+  ) {
+    return this.cropCyclesService.findAllByFarm(userId, farmId);
+  }
 }
 
 // import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Request } from '@nestjs/common'

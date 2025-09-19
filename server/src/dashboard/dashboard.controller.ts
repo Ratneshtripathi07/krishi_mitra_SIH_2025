@@ -9,11 +9,13 @@ import { DashboardService } from './dashboard.service';
 @UseGuards(AuthGuard('jwt'))
 @Controller('dashboard')
 export class DashboardController {
-    constructor(private readonly dashboardService: DashboardService) { }
+  constructor(private readonly dashboardService: DashboardService) {}
 
-    @Get('farmer')
-    @ApiOperation({ summary: "Get all aggregated data for the farmer's dashboard" })
-    getFarmerDashboard(@GetUser('sub') userId: string) {
-        return this.dashboardService.getFarmerDashboardData(userId);
-    }
+  @Get('farmer')
+  @ApiOperation({
+    summary: "Get all aggregated data for the farmer's dashboard",
+  })
+  getFarmerDashboard(@GetUser('sub') userId: string) {
+    return this.dashboardService.getFarmerDashboardData(userId);
+  }
 }

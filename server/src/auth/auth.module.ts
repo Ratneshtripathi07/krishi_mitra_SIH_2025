@@ -9,26 +9,25 @@ import { JwtStrategy } from './strategies/jwt.strategy';
 import { JwtRefreshStrategy } from './strategies/jwt-refresh.strategy';
 
 @Module({
-    imports: [
-        UsersModule,
-        PassportModule,
-        JwtModule.registerAsync({
-            inject: [ConfigService],
-            useFactory: (config: ConfigService) => ({
-                // This is a default secret for the module, but we will sign tokens
-                // with specific secrets and expiration times in the service.
-                secret: config.get<string>('JWT_ACCESS_SECRET'),
-                signOptions: {
-                    expiresIn: config.get<string>('JWT_ACCESS_EXPIRATION'),
-                },
-            }),
-        }),
-    ],
-    controllers: [AuthController],
-    providers: [AuthService, JwtStrategy, JwtRefreshStrategy],
+  imports: [
+    UsersModule,
+    PassportModule,
+    JwtModule.registerAsync({
+      inject: [ConfigService],
+      useFactory: (config: ConfigService) => ({
+        // This is a default secret for the module, but we will sign tokens
+        // with specific secrets and expiration times in the service.
+        secret: config.get<string>('JWT_ACCESS_SECRET'),
+        signOptions: {
+          expiresIn: config.get<string>('JWT_ACCESS_EXPIRATION'),
+        },
+      }),
+    }),
+  ],
+  controllers: [AuthController],
+  providers: [AuthService, JwtStrategy, JwtRefreshStrategy],
 })
-export class AuthModule { }
-
+export class AuthModule {}
 
 // import { Module } from '@nestjs/common'
 // import { JwtModule } from '@nestjs/jwt'

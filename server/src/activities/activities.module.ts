@@ -3,7 +3,7 @@ import { ActivitiesController } from './activities.controller';
 import { ActivitiesService } from './activities.service';
 
 @Module({
-    controllers: [ActivitiesController],
-    providers: [ActivitiesService],
+  controllers: [ActivitiesController],
+  providers: [ActivitiesService],
 })
-export class ActivitiesModule { }
+export class ActivitiesModule {}

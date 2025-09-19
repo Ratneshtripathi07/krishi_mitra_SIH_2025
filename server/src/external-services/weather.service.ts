@@ -4,42 +4,42 @@ import axios from 'axios';
 
 @Injectable()
 export class WeatherService {
-    private readonly apiKey: string;
-    private readonly baseUrl = 'https://api.openweathermap.org/data/2.5/weather';
+  private readonly apiKey: string;
+  private readonly baseUrl = 'https://api.openweathermap.org/data/2.5/weather';
 
-    constructor(private configService: ConfigService) {
-        this.apiKey = this.configService.get<string>('OPENWEATHERMAP_API_KEY');
+  constructor(private configService: ConfigService) {
+    this.apiKey = this.configService.get<string>('OPENWEATHERMAP_API_KEY');
+  }
+
+  async getCurrentWeather(lat: number, lon: number) {
+    if (!this.apiKey) {
+      console.warn('Weather API key is not configured. Returning mock data.');
+      return { temp: 28, condition: 'Sunny', humidity: 60 };
     }
 
-    async getCurrentWeather(lat: number, lon: number) {
-        if (!this.apiKey) {
-            console.warn('Weather API key is not configured. Returning mock data.');
-            return { temp: 28, condition: 'Sunny', humidity: 60 };
-        }
+    try {
+      const response = await axios.get(this.baseUrl, {
+        params: {
+          lat,
+          lon,
+          appid: this.apiKey,
+          units: 'metric',
+        },
+      });
 
-        try {
-            const response = await axios.get(this.baseUrl, {
-                params: {
-                    lat,
-                    lon,
-                    appid: this.apiKey,
-                    units: 'metric',
-                },
-            });
-
-            const data = response.data;
-            return {
-                temp: Math.round(data.main.temp),
-                condition: data.weather[0]?.main || 'Clear',
-                humidity: data.main.humidity,
-                icon: data.weather[0]?.icon,
-            };
-        } catch (error) {
-            console.error('Failed to fetch weather data:', error.message);
-            // Return mock data on failure to prevent frontend from crashing
-            return { temp: 28, condition: 'Sunny', humidity: 60 };
-        }
+      const data = response.data;
+      return {
+        temp: Math.round(data.main.temp),
+        condition: data.weather[0]?.main || 'Clear',
+        humidity: data.main.humidity,
+        icon: data.weather[0]?.icon,
+      };
+    } catch (error) {
+      console.error('Failed to fetch weather data:', error.message);
+      // Return mock data on failure to prevent frontend from crashing
+      return { temp: 28, condition: 'Sunny', humidity: 60 };
     }
+  }
 }
 
 // import { Injectable } from '@nestjs/common'

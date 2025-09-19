@@ -10,29 +10,28 @@ import { UpdateUserDto } from './dto/update-user.dto'; // We'll create this DTO
 @UseGuards(AuthGuard('jwt'))
 @Controller('users')
 export class UsersController {
-    constructor(private readonly usersService: UsersService) { }
+  constructor(private readonly usersService: UsersService) {}
 
-    @Get('me')
-    @ApiOperation({ summary: 'Get the profile of the currently logged-in user' })
-    getProfile(@GetUser('sub') userId: string) {
-        return this.usersService.findById(userId);
-    }
+  @Get('me')
+  @ApiOperation({ summary: 'Get the profile of the currently logged-in user' })
+  getProfile(@GetUser('sub') userId: string) {
+    return this.usersService.findById(userId);
+  }
 
-    @Patch('me')
-    @ApiOperation({ summary: 'Update the profile of the currently logged-in user' })
-    updateProfile(
-        @GetUser('sub') userId: string,
-        @Body() updateUserDto: UpdateUserDto,
-    ) {
-        // We will need to create the UpdateUserDto and add the update logic to the service
-        return this.usersService.update(userId, updateUserDto);
-    }
+  @Patch('me')
+  @ApiOperation({
+    summary: 'Update the profile of the currently logged-in user',
+  })
+  updateProfile(
+    @GetUser('sub') userId: string,
+    @Body() updateUserDto: UpdateUserDto,
+  ) {
+    // We will need to create the UpdateUserDto and add the update logic to the service
+    return this.usersService.update(userId, updateUserDto);
+  }
 }
 
-
 //----------------------------------------------------------------------------------------------
-
-
 
 // import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common'
 // import { UsersService } from './users.service'
